@@ -2,3 +2,8 @@ Names of team members:
 Maxim Moghadam
 Richard Morley
 Zach Tanverakul
+
+Instructions to run:
+1) To change customer or tool types or names, alter the "init" method in the SimClass class
+2) To change the price of tool type, alter the tool type classes, "WoodTool", "ConcreteTool", "PlumbingTool", "PaintTool", "YardTool"
+3) To run the simulation, simply run the "Run.java" file
