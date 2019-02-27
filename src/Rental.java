@@ -1,12 +1,14 @@
 import java.util.*;
 public class Rental {
     private List<Tool> tools;
+    private Customer customer;
     private String name;
     private int length;
     private int dueIn;
     private int price;
-    Rental(String name, List<Tool> tools, int dueIn, int price){
-        this.name = name;
+    Rental(Customer customer, List<Tool> tools, int dueIn, int price){
+        this.customer = customer;
+        this.name = customer.getName();
         this.tools = tools;
         this.length = dueIn;
         this.dueIn = dueIn;
@@ -25,4 +27,5 @@ public class Rental {
     public int getSize(){return tools.size(); }
     public int getPrice(){return this.price; }
     public int getLength(){return this.length; }
+    public Customer getCustomer(){return this.customer; }
 }

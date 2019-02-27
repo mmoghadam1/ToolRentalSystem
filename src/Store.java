@@ -21,6 +21,7 @@ public class Store {
             updateInventory(t, true);
         }
         updateCurRentals(r, true);
+        r.getCustomer().removeRental(r);
     }
     private List<Tool> getTools(int tool){
         List<Tool> sub = new ArrayList<>(inventory);
@@ -65,6 +66,7 @@ public class Store {
     private void updateRevenue(int price){
         revenue = revenue+price;
     }
+
     public void rent(Customer c) {
         int[] daysToRent = c.getDaysToRent(c);
         int[] toolsToRent = c.getToolsToRent(c);
@@ -72,10 +74,15 @@ public class Store {
         int day = daysToRent[new Random().nextInt(daysToRent.length)];
         int tool = toolsToRent[new Random().nextInt(toolsToRent.length)];
 
-        String name = c.getName();
+        List<Rental> rents = c.getRentals();
+        if(rents.size()!=0){
+            tool = rents.get(0).getDueIn();
+            System.out.println(tool);
+        }
         List<Tool> tools = getTools(tool);
         int price = calculatePrice(tools, day);
-        Rental r = new Rental(name, tools, day, price);
+        Rental r = new Rental(c, tools, day, price);
+        c.addRental(r);
         updateRevenue(price);
         updateCurRentals(r, false);
     }
